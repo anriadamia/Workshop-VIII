@@ -2,26 +2,44 @@ let dataSlider = [
     {
       id: 1,
       imageUrl:
-        "https://i.pinimg.com/originals/bb/67/c4/bb67c4782515e7bb6bdb7e50c843dff7.png",
-      title: "title1",
+        "https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?cs=srgb&dl=pexels-pixabay-33109.jpg&fm=jpg&_gl=1*8g3zgq*_ga*MTQzODIwOTc1MS4xNjY0MjUzOTU5*_ga_8JE65Q40S6*MTY2ODE0MzU5NC41LjEuMTY2ODE0MzU5NS4wLjAuMA..",
+      title: "Beautiful Autumn",
     },
     {
       id: 2,
       imageUrl:
-        "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg",
-      title: "title2",
+        "https://images.pexels.com/photos/6054896/pexels-photo-6054896.jpeg?cs=srgb&dl=pexels-james-lee-6054896.jpg&fm=jpg",
+      title: "Leopard",
     },
     {
       id: 3,
       imageUrl:
-        "https://i.pinimg.com/originals/bb/67/c4/bb67c4782515e7bb6bdb7e50c843dff7.png",
-      title: "title3",
+        "https://images.pexels.com/photos/8152002/pexels-photo-8152002.jpeg?cs=srgb&dl=pexels-anna-tarazevich-8152002.jpg&fm=jpg",
+      title: "Hey Cutie Look Woof Woof",
     },
     {
       id: 4,
       imageUrl:
-        "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg",
-      title: "title4",
+        "https://images.pexels.com/photos/3680903/pexels-photo-3680903.jpeg?cs=srgb&dl=pexels-abbas-mohammed-3680903.jpg&fm=jpg",
+      title: "City at night",
+    },
+    {
+      id:5,
+      imageUrl:
+        "https://images.pexels.com/photos/3510717/pexels-photo-3510717.jpeg?cs=srgb&dl=pexels-stein-egil-liland-3510717.jpg&fm=jpg",
+      title: "Mountains",
+    },
+    {
+      id:6,
+      imageUrl:
+        "https://images.pexels.com/photos/449500/pexels-photo-449500.jpeg?cs=srgb&dl=pexels-eberhard-grossgasteiger-449500.jpg&fm=jpg",
+      title: "Nature",
+    },
+    {
+      id:7,
+      imageUrl:
+        "https://images.pexels.com/photos/2457317/pexels-photo-2457317.png?cs=srgb&dl=pexels-anni-roenkae-2457317.jpg&fm=jpg",
+      title: "Art",
     },
   ];
   
@@ -31,23 +49,21 @@ let dataSlider = [
   const dotItem = document.getElementsByClassName('dot');
   let sliderIndex = 0;
   
-  // ამ ფუნქციის საშუალებიტ ვქმნი დივ ტეგს
+
   function createDivTag(item) {
-    // item = მასივიდან დაბრუნებული იტემ
     const div = document.createElement("div");
+    div.style.backgroundImage=`url(${item.imageUrl})`;
     div.classList.add("slide");
-    return div;
+   return div;
   }
   
-  //  ამ ფუნქციის საშუალებიტ ვქმნი სურათის ტეგს
-  function createImgTag(item) {
-    const img = document.createElement("img");
-    img.setAttribute("src", item.imageUrl);
-    img.setAttribute("alt", item.title);
-    return img;
-  }
-  
-  // ამ ფუნქციის საშუალებიტ ვქმნი სათაურის ტეგს
+  // function createImgTag(item) {
+  //   const img = document.createElement("div");
+  //   img.setAttribute("src", item.imageUrl);
+  //   img.setAttribute("alt", item.title);
+  //   return img;
+  // }
+
   function createh2Tag(item) {
     const title = document.createElement("h2");
     title.textContent = item.title;
@@ -74,18 +90,19 @@ let dataSlider = [
     return dotsParent;
   }
   
-  // მთავარი ფუქნცია რომელიც განსაზავღავს რომელი სლიდი უნდა გამოჩნდეს
   function setSlide() {
     sliderContent.innerHTML = " ";
     const slideDiv = createDivTag(dataSlider[sliderIndex]);
-    const imgTag = createImgTag(dataSlider[sliderIndex]);
+    // const imgTag = createImgTag(dataSlider[sliderIndex]);
     const h2Tag = createh2Tag(dataSlider[sliderIndex]);
     const dots = createDots();
   
-    slideDiv.appendChild(imgTag);
-    slideDiv.appendChild(h2Tag);
+    // slideDiv.appendChild(imgTag);
+    // slideDiv.appendChild(h2Tag);
     sliderContent.appendChild(slideDiv);
+    sliderContent.appendChild(h2Tag)
     sliderContent.appendChild(dots);
+    
     currentDotActive();
   }
   
@@ -93,7 +110,6 @@ let dataSlider = [
       dotItem[sliderIndex].classList.add('active');
   }
   
-  // click eventebi
   function arrowLeftClick() {
     if (sliderIndex == 0) {
       sliderIndex = dataSlider.length - 1;
@@ -118,9 +134,9 @@ let dataSlider = [
   arrowLeft.addEventListener("click", arrowLeftClick);
   arrowRight.addEventListener("click", arrowRightClick);
   
-  // setInterval(() => {
-  //   arrowRightClick();
-  // }, 3000);
+  setInterval(() => {
+    arrowRightClick();
+  }, 3000);
   
   setSlide();
   
